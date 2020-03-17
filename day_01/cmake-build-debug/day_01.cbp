@@ -77,6 +77,15 @@
 		<Unit filename="E:/cProject/day_01/main.c">
 			<Option target="day_01"/>
 		</Unit>
+		<Unit filename="E:/cProject/day_01/variable/test.c">
+			<Option target="day_01"/>
+		</Unit>
+		<Unit filename="E:/cProject/day_01/variable/test_constant.c">
+			<Option target="day_01"/>
+		</Unit>
+		<Unit filename="E:/cProject/day_01/variable/test_constant.h">
+			<Option target="day_01"/>
+		</Unit>
 		<Unit filename="E:/cProject/day_01/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

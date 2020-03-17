@@ -1,0 +1,214 @@
+通过C语言的指针可以简化C编程任务的执行，还有一些任务，比如动态内存的分配，没有指针是无法执行的。每个变量都有一个内存的地址，每个内存地址都定义了可用&访问的地址，表示了内存中的一个地址。
+     例子：
+			int main(){
+				int var1;
+				char var2[10];
+				printf("var1变量的地址为：%p\n",&var1);
+				printf("var2变量的地址为：%p\n",&var2);
+			}
+	1、什么是指针？
+		    指针是一个变量，其值为另一个变量的地址，其实就是内存位置的直接地址，就像其他变量或者常量一样，所以必须在指针存储其他变量地址之前，对其进行声明。
+		    int *ip;          整型的指针
+		    double *dp;       double型的指针
+		    float *fp;        浮点型指针
+		    char  *ch;        字符型指针
+		 所有的实际数据类型，不管是整型、浮点型、字符型、还是其他数据，对应的指针的值的类型都是一样的，都是一个代表内存地址长的十六进制数。不同数据类型的指针唯一不同的是，指针所指向的变量或常量的数据类型不同。
+    2、如何使用指针？
+       使用指针时会频繁的进行以下的操作：定义一个指针变量、把变量地址赋值给指针、访问指针变量中可用的地址值。通过使用一元运算符来返回位于操作数指定地址的变量的值。
+         int main() {
+		    int var1;
+		    char var2[10];
+		    printf("var1变量的地址为：%p\n",&var1);
+		    printf("var2变量的地址为：%p\n",&var2);
+		    int var = 20;
+		    int *ip;
+		    ip = &var;
+		    printf("var变量的地址值为：%p\n",&var);
+		    /*在指针变量中存储的地址*/
+		    printf("在ip中的值为%p\n",ip);
+		    /*使用指针访问值*/
+		    printf("*ip指针访问值：%d\n",*ip);
+		    printf("&ip的值为%p\n",&ip);
+		    return 0;
+		}
+	3、C中的NULL指针
+	    void print_NULL(){
+		    int *ptr = NULL;
+		    printf("ptr 的地址 %p\n",ptr);
+		}
+		在大多数操作系统上，程序不允许访问地址为0的内存，因为操作系统是操作系统保留的，然而内存地址0有特别重要的意义，表明该指针不指向一个可访问的内存地址，但按照惯例，如果指针包含空值，则假定它不指向任何东西。
+   C语言指针的算数运算
+      C指针是一个用数值表示的地址，因此，您可以对指针执行算数运算。可以对指针进行四种算数预算：++、--、+、-。
+      假设ptr是指向地址1000的整型指针，是一个32位的整数，让我们对该指针执行下列的算术运算。
+        ptr++  在执行完上述的运算之后，ptr将指向位置1004，因为ptr每增加一次，它都将指向下一个整数位置，即当前位置向后移动4字节，这个运算会在不影响内存
+        位置中实际值的情况下，移动指针到下一个内存位置。如果ptr指向一个地址1000的字符，上面的运算会导致指针指向位置1001，因为下一个字符的位置在1001。
+      总结：
+          指针的每一次递增，它其实会指向下一个元素的存储单元。
+          指针的每一次递减，都会指向前一个元素的存储单元。
+          指针在递增和递减时跳跃的字节数取决于指针所指向变量数据类型长度，比如int就是4个字节。
+      递增一个指针：
+            void add_pointer() {
+			    int var[] = {10, 100, 200};
+			    int i, *ptr, *arr;
+			    /* 指针中的数组地址 */
+			    ptr = var;
+			    arr = (int *) &var;
+			    printf("ptr的值为%p\n", ptr);
+			    printf("arr的值为%p\n", arr);
+			    for (i = 0; i < MAX; i++) {
+			        printf("存储地址：var[%d] = %x\n", i, (unsigned int) ptr);
+			        printf("存储值：var[%d] = %d\n", i, *ptr);
+			        ptr++;
+			    }
+			}
+      递减一个指针：
+			void reduce_pointer() {
+			    int var[] = {10, 20, 100};
+			    int i, *ptr;
+			    /* 指针的最后一个元素的地址 */
+			    ptr = &var[MAX - 1];
+			    for(i = MAX; i > 0; i--){
+			        printf("var[%d]的地址值为：%x\n",i,(unsigned int)ptr);
+			        printf("var[%d]的对应的值为：%d\n",i,*ptr);
+			        ptr--;
+			    }
+			}
+      指针的比较：
+            void compare_pointer(){
+			    int var[] = {10,20,100};
+			    int i,*ptr;
+			    ptr = var;
+			    i = 0;
+			    while(ptr <= &var[MAX - 1]){
+			        printf("--compare--var[%d]对应的地址值为：%x\n",i,(unsigned int)ptr);
+			        printf("--compare--var[%d]对应的值为：%d\n",i,*ptr);
+			        ptr++;
+			        i++;
+			    }
+			}
+   指向指针的指针：
+        指向指针的指针是一种多级间接寻址的形式，或者说是一个指针链，通常，一个指针包含一个变量的地址，当我们定义一个指向指针的指针时，第一个指针包含了第二个指针的地址，第二个指针指向的是包含实际值的位置。
+           int **var;
+           void ppointer(){
+			    int var;
+			    int *ptr;
+			    int **pptr;
+			    var = 3000;
+			    ptr = &var;
+			    pptr = &ptr;
+			    printf("var的值为：%d\n",var);
+			    printf("*ptr的值为：%d\n",*ptr);
+			    printf("**pptr的值为：%d\n",**pptr);
+			}
+    C传递给指针给函数：
+            int main(){
+              get_seconds(&sec);
+              printf("Number of seconds：%ld\n",sec);
+            }
+            void get_seconds(unsigned long *par) {
+			    /*获取当前的秒数*/
+			    *par = (unsigned long) time(NULL);
+			}
+
+	    同时数组也是可以传入函数
+	       double getAverage(int *arr,int size){
+			    int i,sum = 0;
+			    double avg;
+			    for(i = 0; i < size; i++){
+			        sum += arr[i];
+			    }
+			    avg = (double )sum / size;
+			    return avg;
+			}
+    从函数传入指针
+        #include <stdio.h>
+		#include <time.h>
+		#include <stdlib.h>
+		int *getRandom();
+		int main() {
+		    int *p;
+		    int i;
+		    p = getRandom();
+		    for(i = 0; i < 10; i++){
+		        printf("*(p + [%d]) : %d\n",i,*(p + i));
+		    }
+		}
+		int *getRandom(){
+		    static int r[10];
+		    int i;
+		    /* 设置种子 */
+		    srand((unsigned long)time((NULL)));
+		    for(i = 0; i < 10; i++){
+		        r[i] = rand();
+		        printf("%d\n",r[i]);
+		    }
+		    return r;
+		}
+   函数指针和回调函数
+          函数指针：指向函数的指针变量，函数指针可以像一般函数一样用于调用函数，传递参数等。
+                #include <stdio.h>
+				#include <time.h>
+				#include <stdlib.h>
+
+				int *getRandom();
+
+				int max(int x, int y);
+
+				int main() {
+				    int *p;
+				    int i;
+				    p = getRandom();
+				    for (i = 0; i < 10; i++) {
+				        printf("*(p + [%d]) : %d\n", i, *(p + i));
+				    }
+				    /* 函数指针 */
+				    int (* f)(int, int) = &max;
+				    int a,b,c,d;
+				    printf("请输入三个数字：");
+				    scanf("%d,%d,%d",&a,&b,&c);
+				    /* 与直接调用函数等价，d = max(max(a,b),c) */
+				    d = f(f(a,b),c);
+				    printf("最大的数字为：%d\n",d);
+				    return 0;
+				}
+
+				int *getRandom() {
+				    static int r[10];
+				    int i;
+				    /* 设置种子 */
+				    srand((unsigned long) time((NULL)));
+				    for (i = 0; i < 10; i++) {
+				        r[i] = rand();
+				        printf("%d\n", r[i]);
+				    }
+				    return r;
+				}
+
+				int max(int x, int y) {
+				    return x > y ? x : y;
+				}
+    回调函数
+         函数指针作为某个函数的参数，函数指针变量可以作为某个函数的参数来使用，回调函数是通过函数指针调用的函数。
+         定义函数：
+
+            void populate_array(int *array,size_t arraySize,int (*getNextValue)(void)){
+			   for(size_t i = 0; i < arraySize; i++){
+			       array[i] = getNextValue();
+			   }
+			}
+
+			int getNextValue(void){
+			    return rand();
+			}
+
+	     调用函数：
+				int main(){
+				int arr[10];
+				populate_array(arr,10,getNextValue);
+				for(i = 0; i < 10;i++){
+				printf("%d\t",arr[i]);
+				}
+				printf("\n");
+				return 0;
+				}
+

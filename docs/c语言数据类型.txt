@@ -11,3 +11,59 @@ c语言的数据类型：
        unsigned int    2到4字节           0 到 65,535 或 0 到 4,294,967,295
        short           2字节              -32,768 到 32,767
        unsigned short  2字节              0 到 65,535
+       long            4字节              -2,147,483,648 到 2,147,483,647
+       unsigned long   4字节              0 到 4,294,967,295 
+  浮点型：
+       float           4字节              1.2E-38 到 3.4E+38        6位小数
+       double          8字节              2.3E-308 到 1.7E+308      15 位小数
+       long double     16字节             3.4E-4932 到 1.1E+4932    19 位小数
+  void类型：
+       函数返回值为空  void exit(int status)
+       函数参数为空    int rand(void)
+       指针指向void    void *malloc(size_t,size)
+C语言变量：
+    char：通常是一个字节
+    int：对机器而言，整数最自然的大小
+    float：单精度浮点值
+    double：双精度浮点值
+    void：表示类型的缺失
+    对变量的声明，告诉编辑器在何处创建变量的存储：
+    int    i, j, k;
+	char   c, ch;
+	float  f, salary;
+	double d;
+
+    extern 的使用
+    在同一个文件中的使用
+    mian.c
+    
+    #include <stdio.h>
+    int a;
+    int b;
+    int addtowsum(){
+      extern int a;
+      extern int b;
+      a = 1;
+      b = 2;
+      return a + b;
+    }
+    int main(){
+         printf("addtwosum的执行结果为：%d\n",addtwosum())
+    }
+
+    另一种方式：
+    test.c
+    #include <stdio.h>
+    externd int a;
+    externd int b;
+    int addtwosum(){
+     return a + b;
+    }
+    main.c
+    #include <stdio.h>
+    int a = 1;
+    int b = 1;
+    int addtwosum()
+    int main(){
+       print("addtwo的执行结果为：%d\n",addtwosum())
+    }

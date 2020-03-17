@@ -1,0 +1,117 @@
+结构体是C编程中另一种用户自定义的可用的数据类型，它允许存储不同类型的数据项。
+    例如记录一本书：
+        title
+        author
+        subject
+        bookid
+     举例：
+            struct Books
+			{
+			   char  title[50];
+			   char  author[50];
+			   char  subject[100];
+			   int   book_id;
+			} book;
+			Books：表示的是标签，book表示的是结构变量，{}里面的是标准的变量，一般来说上面的三种属性是需要出现至少2次的。
+			struct 
+			{
+			    int a;
+			    char b;
+			    double c;
+			} s1;
+
+
+			struct SIMPLE
+			{
+			    int a;
+			    char b;
+			    double c;
+			};
+			//用SIMPLE标签的结构体，另外声明了变量t1、t2、t3
+			struct SIMPLE t1, t2[20], *t3;
+			//此结构体的声明包含了其他的结构体
+			struct COMPLEX
+			{
+			    char string[100];
+			    struct SIMPLE a;
+			};
+			 
+			//此结构体的声明包含了指向自己类型的指针
+			struct NODE
+			{
+			    char string[100];
+			    struct NODE *next_node;
+			};
+
+	     实例：
+	        #include <stdio.h>
+			#include <string.h>
+
+			struct Books {
+			    char title[20];
+			    char author[20];
+			    char subject[100];
+			    int book_id;
+			} books = {"C语言", "RUNOOB", "编程语言", 123456};
+
+			int main() {
+			    printf("书名：%s\n 作者：%s\n 摘要：%s\n 编号：%d\n", books.title, books.author, books.subject, books.book_id);
+			    struct Books books1;
+			    struct Books books2;
+			    strcpy(books1.title,"C PROGRAM");
+			    strcpy(books1.author,"RUNOOB");
+			    strcpy(books1.subject,"c语言编程");
+			    books1.book_id = 11111;
+			    printf("%s\n",books1.title);
+			    printf("%s\n",books1.author);
+			    printf("%s\n",books1.subject);
+			    printf("%d\n",books1.book_id);
+			}
+		结构作为函数参数：
+		     举例：
+		        void print_book(struct test_Books books) {
+				    printf("print_book begin....");
+				    printf("%s\n", books.title);
+				    printf("%s\n", books.author);
+				    printf("%s\n", books.subject);
+				    printf("%d\n", books.book_id);
+				    printf("print_book end....");
+				}
+        指向结构的指针：
+              例如：struct Books *struct_pointer;
+
+              函数定义：
+                  void print_book2(struct test_Books *books){
+				    printf("title:%s\n",books->title);
+				    printf("author:%s\n",books->author);
+				    printf("subject:%s\n",books->subject);
+				    printf("book_id:%d\n",books->book_id);
+				}
+
+				调用：
+				    print_book2(&test_book);
+	    位域：有些信息在存储的时候，并不需要占用完整的一个字节，而只需要占几个或者一个二进制位，例如在存放一个开关量时候只需要存放0或者为1，用一位二进制
+	         就行了，C语言提供了一种数据结构，称为位域或者是位段，所谓的位域就是将字节中的二进位划分为几个不同的区域，并说明每个区域的位数，每个域都有一个名字，允许程序中按照域名进行操作，这样就可以把不同的对象用一个字节的二进制位域来表示。
+
+             例如：
+                struct bs{
+				    int a:8;
+				    int b:2;
+				    int c:6;
+				}data;
+
+			struct packed_struct{
+			    unsigned int f1 : 1;
+			    unsigned int f2 : 1;
+			    unsigned int f3 : 1;
+			    unsigned int f4 : 1;
+			    unsigned int type : 4;
+			    unsigned int my_int : 9;
+			};
+			关于结构体位域的说明，一个位域存储在同一个字节中，如一个字节所剩的空间不够存放另一个位域时，则会从下一单元起开始存放该位域。
+            struct bs{
+			    int a : 4;
+			    int   : 4; /*表示的是空域*/
+			    int c : 4;
+			    int d : 4;
+			};

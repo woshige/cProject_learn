@@ -1,0 +1,30 @@
+函数就是一组一起执行一个任务的语句，如果每个C程序都至少有一个函数，即主函数main()，所有简单的程序可以定义其他额外的函数
+     示例：
+       int max(int num1, int num2) 
+		{
+		   /* 局部变量声明 */
+		   int result;
+		 
+		   if (num1 > num2)
+		      result = num1;
+		   else
+		      result = num2;
+		 
+		    return result; 
+		}
+	函数的参数：如果函数需要使用参数，则必须声明接受参数的变量，这些变量成为函数的形式参数，在进入函数时产生，退出函数时消灭。
+	          传值调用：
+	                   就是将参数实际的值复制给函数的形式参数，这种情况下函数对于形式参数的改变不糊影响实际的参数。
+	                   int swap(int num1,int num2){
+								    int temp;
+								    temp = num2;
+								    num2 = num1;
+								    num1 = temp;
+								}
+	          引用调用：通过引用传递方式，形参为指向实参地址的指针，当对形参的指向操作时，相当于是对实参进行操作。
+	                    void true_swap(int *num1,int *num2){
+									    int temp;
+									    temp = *num1;
+									    *num1 = *num2;
+									    *num2 = temp;
+									}

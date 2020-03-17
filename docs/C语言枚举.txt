@@ -1,0 +1,52 @@
+C语言中的一种基本的数据类型，可以使数据更加的简洁
+     例子：
+			#define MON  1
+			#define TUE  2
+			#define WED  3
+			#define THU  4
+			#define FRI  5
+			#define SAT  6
+			#define SUN  7
+			上面的例子显得代码十分的繁琐
+
+
+     声明枚举变量：
+			#include <stdio.h>
+
+			/**
+			* 在第一个枚举值给定数值的情况下，后面的数值在之前的数值的基础上加上1
+			* 在第一个元素没有给定的情况之下，默认的值为1
+			*/
+			enum {
+			MON = 1, TUS, WES, THU = 4, FRI, SAT, SUN
+			};
+
+			int main() {
+			printf("%d\n", MON);
+			printf("%d\n", TUS);
+			printf("%d\n",FRI);
+			}
+	枚举变量的声明：
+	1、
+		enum DAY {
+		MON = 1, TUS, WES, THU = 4, FRI, SAT, SUN
+		};
+		enum DAY days;
+    2、
+		enum DAY {
+		MON = 1, TUS, WES, THU = 4, FRI, SAT, SUN
+		} day;
+	3、
+		enum {
+		MON = 1, TUS, WES, THU = 4, FRI, SAT, SUN
+		} day;
+	枚举类型变量的遍历：
+			enum {
+			MON = 1, TUS, WES, THU = 4, FRI, SAT, SUN
+			} day;
+
+			int main() {
+			for(day = MON;day <= SUN;day++){
+			printf("枚举元素：%d\n",day);
+			}
+			}

@@ -149,6 +149,60 @@ main.c.s:
 	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/main.c.s
 .PHONY : main.c.s
 
+variable/test.obj: variable/test.c.obj
+
+.PHONY : variable/test.obj
+
+# target to build an object file
+variable/test.c.obj:
+	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/variable/test.c.obj
+.PHONY : variable/test.c.obj
+
+variable/test.i: variable/test.c.i
+
+.PHONY : variable/test.i
+
+# target to preprocess a source file
+variable/test.c.i:
+	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/variable/test.c.i
+.PHONY : variable/test.c.i
+
+variable/test.s: variable/test.c.s
+
+.PHONY : variable/test.s
+
+# target to generate assembly for a file
+variable/test.c.s:
+	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/variable/test.c.s
+.PHONY : variable/test.c.s
+
+variable/test_constant.obj: variable/test_constant.c.obj
+
+.PHONY : variable/test_constant.obj
+
+# target to build an object file
+variable/test_constant.c.obj:
+	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/variable/test_constant.c.obj
+.PHONY : variable/test_constant.c.obj
+
+variable/test_constant.i: variable/test_constant.c.i
+
+.PHONY : variable/test_constant.i
+
+# target to preprocess a source file
+variable/test_constant.c.i:
+	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/variable/test_constant.c.i
+.PHONY : variable/test_constant.c.i
+
+variable/test_constant.s: variable/test_constant.c.s
+
+.PHONY : variable/test_constant.s
+
+# target to generate assembly for a file
+variable/test_constant.c.s:
+	$(MAKE) -f CMakeFiles\day_01.dir\build.make CMakeFiles/day_01.dir/variable/test_constant.c.s
+.PHONY : variable/test_constant.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -161,6 +215,12 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... variable/test.obj
+	@echo ... variable/test.i
+	@echo ... variable/test.s
+	@echo ... variable/test_constant.obj
+	@echo ... variable/test_constant.i
+	@echo ... variable/test_constant.s
 .PHONY : help
 
 

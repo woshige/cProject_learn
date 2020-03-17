@@ -1,0 +1,84 @@
+一种数据结构，存储固定的大小的相同的元素的顺序集合。数组就使用来存储一系列的数据，但它往往被认为是一系列相同的类型的变量。
+     例如：
+          double balance[10];
+     简单的数组使用：
+		     #include <stdio.h>
+
+			int print_array();
+
+			int main() {
+			    print_array();
+			}
+
+			int print_array() {
+			    int n[10];
+			    int i, j;
+			    for (i = 0; i < 10; i++) {
+			        n[i] = i + 100;
+			    }
+			    for (j = 0; j < 10; j++) {
+			        printf("Element[%d] = %d\n", j, n[j]);
+			    }
+			    return 0;
+			}
+	 多维数组：
+			int print_multi_array(){
+		    int a[5][2] = { {0,0},{1,2},{2,4},{3,6},{4,8} };
+		    int i,j;
+		    for(i = 0; i < 5; i++){
+		        for(j = 0; j < 2; j++){
+		            printf("a[%d][%d] = %d\n",i,j,a[i][j]);
+		        }
+		    }
+		}
+     一维数组传递数组给函数
+          方式1、  void function_name(int *param){
+
+          }
+          方式2、  void function_name(int param[10]){
+
+          }
+          方式3、  void function_name(int param[]){
+
+          }
+        示例：
+        double getAverage(int params[],int size){
+		    double sum = 0,avg;
+		    int i;
+		    for(i = 0; i < size; i++){
+		        sum += params[i];
+		    }
+		    avg = sum /size;
+		    return avg;
+		}
+	二维数组传递数组给函数
+	      方法1、void print_a(int a[][5],int n,int m)  第一维的长度可以不用给出，但是第二维度的长度必须给出
+	      方法2、void print_b(int (*a)[5],int n,int m) 指向一个有5个元素的一维数组的指针
+	      方法3、void print_c(int *a,int n,int m) 通过降维的方式来访问数组，因为数组是顺序存储的
+	      void print_a(int array[][5],int n,int m){
+			int i,j;
+			for(i = 0; i < n; i++){
+			for(j = 0; j < m;j++){
+			    printf("%d",array[i][j]);
+			}
+			printf("\n");
+			}
+			}
+			void print_b(int (*array)[5],int n,int m){
+			int i,j;
+			for(i = 0;i < n;i++){
+			for(j = 0; j < m;j++){
+			    printf("%d",array[i][j]);
+			}
+			printf("\n");
+			}
+			}
+			void print_c(const int *array,int n,int m){
+			int i,j;
+			for(i = 0;i < n;i++){
+			for(j = 0; j < m;j++){
+			    printf("%d",*(array + i*m + j));
+			}
+			printf("\n");
+			}
+			}
