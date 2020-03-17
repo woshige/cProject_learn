@@ -10,6 +10,16 @@ struct Books {
 } books = {"C语言", "RUNOOB", "编程语言", 123456};
 
 struct test_Books test_book;
+typedef struct {
+    unsigned char a;
+    unsigned int b;
+    unsigned char c;
+} debug_size1_t;
+typedef struct {
+    unsigned char a;
+    unsigned char b;
+    unsigned int c;
+} debug_size2_t;
 
 int main() {
     printf("书名：%s\n 作者：%s\n 摘要：%s\n 编号：%d\n", books.title, books.author, books.subject, books.book_id);
@@ -28,8 +38,10 @@ int main() {
     strcpy(test_book.author, "java");
     test_book.book_id = 10;
     print_book(test_book);
-    printf("print_book2 begin-----");
+    printf("print_book2 begin-----\n");
     print_book2(&test_book);
-    printf("print_book2 end--------");
+    printf("print_book2 end--------\n");
+    printf("%d\n", (int) sizeof(debug_size1_t));
+    printf("%d\n",(int) sizeof(debug_size2_t));
 
 }
