@@ -1,0 +1,78 @@
+C预处理器不是编译器的组成部分，但是它是编译过程中一个单独的步骤。就是只不过是一个文本替换工具，它们会根据指示编译器在实际编译之前完成预处理。
+   常用的预处理器指令：
+       #define 定义宏
+       #include 包含源代码文件
+       #undef   取消已定义的宏
+       #ifdef   如果宏已经定义，则返回真
+       #ifndef  如果宏没有定义，则返回真
+       #if      如果给定的条件为真，则编译下面的代码
+       #else    #if的替代方案
+       #elif    如果前面的#if条件不为真的时候，当前的条件为真，则编译下面的代码
+       #endif   结束了一个#if...#else条件编译
+       #error   遇到标准错误的时候，输出错误消息
+       #pragma  使用标准化方法，向编译器发布特殊的命令到编译器中
+   实例：
+
+        /*从系统库中导入stdio.h文件*/
+		#include <stdio.h>
+
+		/*从本地中导入自定义的myheader.h*/
+		#include "header/myheader.h"
+
+		/*将下面的MAX_ARRAY_LENGTH 替换为20*/
+		#define MAX_ARRAY_LENGTH 10
+		/*取消之前的定义*/
+		#undef MAX_ARRAY_LENGTH
+		#define MAX_ARRAY_LENGTH 20
+		/*如果MESSAGE没有定义的时候*/
+		#ifndef MESSAGE
+		#define MESSAGE "message is not define"
+		#endif
+
+		int main() {
+		    printf("%d\n", MAX_ARRAY_LENGTH);
+		    printf("%s\n", MESSAGE);
+		    return 0;
+		}
+  预定义宏：
+      ANSI C中定义了许多宏，在编程中可以使用这些宏，但是不可以直接的修改这些宏
+        __DATE__  当前日期 MMM DD YYYY
+        __TIME__  当前时间 HH:MM:SS
+        __FILE__  当前文件名，一个字符串常量
+        __LINE__  包含当前的行号，一个十进制常量
+        __STDC__  当编译器ANSI标准编译时，则定义为1
+ 预处理器运算符：
+        宏延续运算符（\）：一个宏通常写在一个单行上，但是如果宏太长，一个单行容不下，则使用宏延续运算符（\）例如：
+            #define message_for(a,b) \
+            printf(#a "and" #b ":we love you !\n")
+
+            使用宏 message_for(SUNLICHAO,C);
+        字符串常量化运算符（#）：当需要将一个宏的参数转换为字符串常量的时候，则适合用字符串常量化运算符
+        标记粘贴运算符（##）  宏定义内的标记粘贴运算符会合并两个参数，它允许在宏定义中两个独立的标记合并成一个标记
+        #define message_for2(n) printf("token" #n "=%d",token##n)
+        int token34 = 40;
+        message_for2(34);
+
+        输出为token34 = 40
+        defined() 运算符：预处理器defined运算符使用在常量表达式，用来确定一个标志符是否使用#define定义过，如果指定的标志符已经定义，则值为真，如果
+        指定的标志符未定义，则值为假。
+         用来判断是否定义过
+            #if !defined (slc)
+			    #define slc "slc"
+			#endif
+参数化的宏
+  CPP一个强大的功能是可以使用参数化的宏来模拟函数
+     #define square(x) ((x) * (x))
+
+
+
+
+
+
+
+
+
+
+
+
+

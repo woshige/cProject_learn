@@ -1,0 +1,19 @@
+C语言将所有的设备当做文件，所以设备被处理的方式与文件相同，以下的三个文件会在程序时自动打开，已便访问键盘和屏幕。
+      标准输入                            stdin                                 键盘
+      标准输出                            stdout                                屏幕
+      标准错误                            stderr                                屏幕
+
+      printf() 用于格式化输出到屏幕，在stdio.h中的头文件的声明
+           %d 整型  %f  浮点型
+      scang() 标准输入
+      getchar() 读取一个可用的字符
+      putchar() 输出一个可用的字符
+      gets() 从标准输入读取一行到缓冲区，直到一个终止符或者EOF
+      puts() 函数把字符串s和一个尾随的换行符到标准输出
+
+      例子：
+            char chars[100];
+		    printf("please enter a value:");
+		    gets(chars);
+		    printf("你输入的值为：\n");
+		    puts(chars);

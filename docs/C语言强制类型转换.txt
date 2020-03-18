@@ -1,0 +1,21 @@
+强制类型转换是把变量从一种类型转换为另一种数据类型。例如，如果你想存储一个long类型到简单的类型中去，需要把long强转成为int类型
+  举例：
+        #include <stdio.h>
+
+		int main() {
+		    int sum = 17,count = 5;
+		    double res;
+		    res = (double )sum / count; /*类型转换的优先级大于除法，先是sum被转换为double类型，然后除以count*/
+		    printf("%f\n",res);
+		    return 0;
+		}
+   整数提升示例：
+      void char_int(){
+		    int i = 17;
+		    char c = 'c'; /* ascii的值为 99*/
+		    int sum;
+		    sum = i + c;
+		    printf("%d\n",sum);
+		}
+   常用的算数转换：是隐式的把值转换为相同的类型，编译器限制性整数提升，如果操作类型不同，则它们会转换为下列层次中出现最高的层次
+      一般是   int -> unsigned int -> long -> unsigned long -> long long -> unsigned long long -> double -> long dobule

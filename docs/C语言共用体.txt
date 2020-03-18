@@ -1,0 +1,72 @@
+共用体是一种特殊的类型，允许你在相同的内存位置中存储不同的数据类型，你可以定义一个带有多成员的共用体，但是任何时候只能有一个成员带有值。
+了    例如：
+			union Data
+			{
+			   int i;
+			   float f;
+			   char  str[20];
+			} data;
+		现在的Data类型可以存储的是一个整数，一个浮点数或者一个字符串，这意味着一个变量（相同的存储位置）可以存储多个类型的色护具，你可以根据需要在一个共用体中使用任何内置的或者用户自定义的数据类型。共用体的占用内存的大小为成员中最大的那个。
+
+	 例如：
+	    #include <stdio.h>
+
+		union Data {
+		    int i;
+		    float f;
+		    char str[20];
+		};
+
+		void print_union_size();
+
+		int main() {
+		    print_union_size();
+		    return 0;
+		}
+
+		void print_union_size() {
+		    union Data data;
+		    printf("data的size：%d\n", (unsigned int) sizeof(data));
+		}
+	访问共同体成员：
+	    void access_union(){
+		    union Data data;
+		    data.f = 220.5;
+		    data.i = 100;
+		    strcpy(data.str,"c program");
+		    printf("data.f:%f\n",data.f);
+		    printf("data.i:%d\n",data.i);
+		    printf("data.str:%s\n",data.str);
+		}
+		data.f:4756195551848466500000000000000.000000
+		data.i:1919950947
+		data.str:c program
+
+		看到共用体中的i和f成员的值有损坏，因为赋值给变量的值占用了内存的位置，这也是data.str能够完整的输出的原因。
+		但是这样是不会出现成员值的损坏的：
+
+		 void access_union2();
+		 void access_union2(){
+		    union Data data;
+		    data.i = 1;
+		    printf("data.i:%d\n",data.i);
+		    data.f = 220.5;
+		    printf("data.f:%f\n",data.f);
+		    strcpy(data.str,"c program");
+		    printf("data.str:%s\n",data.str);
+		}
+    共用体作用：节省内存，有两个很长的数据结构，不会同时使用。用共用体的话，只占用最长的那个数据结构所占用的空间。
+    共用体的应用场景：
+         通信中的数据会用到共用体，因为不知道对方会发送一个什么包出来，如果使用共用体就简单了。
+
+
+    计算机中的大端小端模式？
+       大端模式：数据的高字节保存在内存的低地址中，数据的低字节，保存在内存的高地址中。
+       小端模式：数据的高字节保存在内存的高地址中，数据的低字节，保存在内存的低地址中。
+
+       采用小端模式有利于计算机的存储，大端模式进行数据存放符合人类的思维
+
+       0x1122
+                   0x4000               0x4001
+       小端：        22                   11
+       大端：        11                   22

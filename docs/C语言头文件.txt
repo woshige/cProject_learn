@@ -1,0 +1,24 @@
+头文件是扩展名为.h的文件，包含了C函数声明和宏定义，被多个源文件中引用共享，有两种类型的头文件：自己编写的头文件和编译器自带的头文件。在程序中使用的时候
+使用 预编译指令#include即可
+     引用头文件的语法：
+             #include <file> 引用系统头文件
+             #include "file" 引用户头文件
+     只引用一遍的头文件
+        如果一个头文件被引用了多次，编译器会处理两次头文件的内容，这会产生错误，为了防止出现这种情况，标准的做法是把文件的整个内容放在条件编译的语句中去
+        例如
+            #ifndef HEADER_FILE
+            #define HEADER_FILE
+              the entire header file
+            #endif
+
+     有条件的引用
+          有时需要从多个不同的头文件中选择一个应用到程序中，例如，需要在不同的操作系统上使用配置参数例如
+          #if SYSTEM_1
+             #include "system1.h"
+          #elif SYSTEM_2
+             #include "system2.h"
+          #elif  SYSTEM_3
+             #include "system3.h"
+          ...
+          #endif
+
